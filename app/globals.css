@@ -5,6 +5,13 @@
   color: black;
 }
 
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Scroll personalizado con los colores de tu app */
 ::-webkit-scrollbar {
   width: 8px;

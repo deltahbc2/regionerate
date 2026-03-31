@@ -1,13 +1,36 @@
 "use client";
 
+import { api } from "@/convex/_generated/api";
+import { useQuery } from "convex/react";
 import { MouseEvent, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
+import Card from "./_components/card";
 
 const MapPage = () => {
+    //Referencia al contenedor donde se carga el svg --Equivalente al querySelector
     const mapContainerRef = useRef<HTMLDivElement>(null)
+    //guardar el mapa o el error
     const [map, setMap] = useState<string>("");
     const [loadError, setLoadError] = useState<string | null>(null);
+    
+    //guardar el municipio seleccionado
     const [selectedMunicipio, setSelectedMunicipio] = useState<string | null>(null)
+    //Obtener las ecorregiones para consultar
+    const [ecorregion, setEcorregion] = useState<number[] | null>(null);
+
+    const PLANTAS_POR_PAGINA = 4; 
+    const [paginaActual, setPaginaActual] = useState(1);
+
+    //query para obtener las plantas segun la region
+    const plantas = useQuery(
+        api.plantas.getPlantasByEcorregion,
+        ecorregion ? { ecorregion } : "skip",
+    )
+
+    const totalPlantas = plantas?.length ?? 0;
+    const totalPaginas = Math.max(1, Math.ceil(totalPlantas / PLANTAS_POR_PAGINA));
+    const indiceInicio = (paginaActual - 1) * PLANTAS_POR_PAGINA;
+    const plantasPaginadas = plantas?.slice(indiceInicio, indiceInicio + PLANTAS_POR_PAGINA) ?? [];
 
     useEffect(()=>{
         //Fetch al svg tipo API
@@ -35,8 +58,8 @@ const MapPage = () => {
         }
 
         const municipios = Array.from(
-            mapContainerRef.current.querySelectorAll("g[id]"),
-        ) as SVGAElement[];
+            mapContainerRef.current.querySelectorAll("g[data-region][id]"),
+        ) as SVGGElement[];
 
         municipios.forEach((municipio)=> municipio.removeAttribute("data-selected"));
 
@@ -46,21 +69,56 @@ const MapPage = () => {
 
         const selectedGroup = municipios.find((municipio) => municipio.id === selectedMunicipio);
         selectedGroup?.setAttribute("data-selected", "true");
-    }, [map, selectedMunicipio])
+    }, [map, selectedMunicipio, plantas])
+
+    useEffect(() => {
+        setPaginaActual(1);
+    }, [selectedMunicipio, ecorregion]);
+
+    useEffect(() => {
+        if (paginaActual > totalPaginas) {
+            setPaginaActual(totalPaginas);
+        }
+    }, [paginaActual, totalPaginas]);
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [paginaActual]);
 
     const handleMapClick = (event: MouseEvent<HTMLDivElement>)=> {
+        event.preventDefault();
+
         const target = event.target as Element | null;
         if(!target){
             return;
         }
         
-        const municipio = target.closest("g[id]") as SVGGElement | null;
-        console.log(municipio?.id)
+        const municipio =
+            (target.closest("g[data-region][id]") as SVGGElement | null) ??
+            (target.querySelector("g[data-region][id]") as SVGGElement | null);
+
         if (!municipio?.id) {
             return;
         }
+
+        //elemento temporal para obtener la ecorregion a la que pertenece
+        const regionString = municipio.getAttribute("data-region")?.split(",")
+        
+        //elemento temporal para almacenar el array de ecorregiones
+        const regionNumber: number[] = []
+        regionString?.forEach(region => {
+            const parsed = Number(region.trim());
+            if (!Number.isNaN(parsed)) {
+                regionNumber.push(parsed)
+            }
+        });
+
+        //cargar la ecorregion
+        setEcorregion(regionNumber.length > 0 ? regionNumber : null)
+
         if(municipio.id == selectedMunicipio){
             setSelectedMunicipio(null);
+            setEcorregion(null);
             return;
         }
 
@@ -68,11 +126,11 @@ const MapPage = () => {
     }
     
     return (
-        <main className="w-full min-h-screen flex flex-col md:flex-row items-center justify-center">
-            <div className="w-full md:w-1/2 flex justify-center">
+        <main className="w-full md:w-[90%] py-12 px-4 min-h-screen flex flex-col md:flex-row items-center md:items-start justify-center gap-6">
+            <div className="w-full md:w-[40%] flex justify-center md:sticky md:top-6 md:self-start">
                 {!loadError ? (
                     <div
-                        className="nl-map-shell max-h-[80vh] overflow-scroll"
+                        className="nl-map-shell max-h-[80vh] md:max-h-[calc(100vh-3rem)] overflow-scroll"
                         ref={mapContainerRef}
                         dangerouslySetInnerHTML={{ __html: map }}
                         onClick={handleMapClick}
@@ -83,10 +141,46 @@ const MapPage = () => {
                     </p>
                 )}
             </div>
-            <div className="w-full md:w-1/2 flex flex-col justify-center">
-                <h2 className="text-lg font-semibold">Municipio Seleccionado</h2>
-                <p className="mt-2 text-gray-700">{selectedMunicipio ?? "Ninguno"}</p>
-            </div>
+            {selectedMunicipio ? (
+                <div className="w-full md:w-[60%] flex flex-col justify-center">
+                    <h2 className="text-lg font-semibold">Municipio Seleccionado</h2>
+                    <p className="mt-2 text-gray-700">{selectedMunicipio?.replaceAll('-', ' ') ?? "Ninguno"}</p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        {plantasPaginadas.map(({ _id, nombreComun, nombreCientifico, altura, requerimientoHidrico, floracion, categoria }) => (
+                            <div className="flex justify-center my-4" key={_id}>
+                                <Card nombreComun={nombreComun} nombreCientifico={nombreCientifico} altura={altura} requerimientoHidrico={requerimientoHidrico} floracion={floracion} categoria={categoria}/>
+                            </div>
+                        ))}
+                    </div>
+
+                    {totalPlantas > 0 ? (
+                        <div className="mt-8 mb-12 flex items-center justify-between gap-4">
+                            <button
+                                type="button"
+                                className="cursor-pointer rounded-md border border-emerald-600 px-4 py-2 text-emerald-700 disabled:cursor-not-allowed disabled:opacity-40"
+                                onClick={() => setPaginaActual((prev) => Math.max(1, prev - 1))}
+                                disabled={paginaActual === 1}
+                            >
+                                Anterior
+                            </button>
+                            <p className="text-sm text-gray-600">
+                                Pagina {paginaActual} de {totalPaginas}
+                            </p>
+                            <button
+                                type="button"
+                                className="cursor-pointer rounded-md border border-emerald-600 px-4 py-2 text-emerald-700 disabled:cursor-not-allowed disabled:opacity-40"
+                                onClick={() => setPaginaActual((prev) => Math.min(totalPaginas, prev + 1))}
+                                disabled={paginaActual === totalPaginas}
+                            >
+                                Siguiente
+                            </button>
+                        </div>
+                    ) : null}
+                </div>
+            ): (
+                <></>
+            )}
         </main>
     );
 }
