@@ -14,5 +14,7 @@ export default defineSchema({
         polinizadores: v.array(v.string()),
         tamano: v.string(),
         ecorregion: v.array(v.number()),
-    }),
+        imagen: v.string()
+    })
+    .index("by_nombreCientifico", ["nombreCientifico"])
 });

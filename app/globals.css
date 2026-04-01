@@ -41,6 +41,16 @@ body{
   scrollbar-color: #305a4b #f4f5f4;
 }
 
+::selection {
+  background-color: #ff8300;
+  color: #fff !important;
+}
+
+::-moz-selection {
+  background-color: #ff8300;
+  color: #fff !important;
+}
+
 .nl-map-shell g[id] {
   cursor: pointer;
 }

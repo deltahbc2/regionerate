@@ -19,3 +19,18 @@ export const getPlantasByEcorregion = query({
         return filtro;
     }
 })
+
+export const getPlantaByNombreCientifico = query({
+    args: {
+        nombreCientifico: v.string()
+    }, handler: async (ctx, args) =>{
+        const planta = await ctx.db
+            .query("plantas")
+            .withIndex("by_nombreCientifico", (q) =>
+                q.eq("nombreCientifico", args.nombreCientifico)
+            )
+            .unique();
+
+        return planta;
+    }
+})

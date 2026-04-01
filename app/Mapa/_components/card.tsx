@@ -1,7 +1,7 @@
 import { Droplets, Leaf, Ruler } from "lucide-react";
 
 const Card = ({
-    nombreComun, nombreCientifico, altura, requerimientoHidrico, floracion, categoria
+    nombreComun, nombreCientifico, altura, requerimientoHidrico, floracion, categoria, imagen, onVerMas
 }: {
     nombreComun: string;
     nombreCientifico: string;
@@ -9,6 +9,8 @@ const Card = ({
     requerimientoHidrico: string;
     floracion: string;
     categoria: string [];
+    imagen: string;
+    onVerMas: (nombreCientifico: string) => void;
 }) => {
     const floracionArray = floracion.split(",").map(rango => rango.trim().split("-").map(mes => mes.trim()));
 
@@ -40,7 +42,7 @@ const Card = ({
                                 backgroundSize: '20px 20px',
                             }}
                         >
-                            <img src="/card-image.png" alt="Imagen" className="w-50"/>
+                            <img src={`/Cards/${imagen}`} alt={nombreComun} className="w-50 h-50"/>
                         </div>
                     </div>
 
@@ -83,7 +85,10 @@ const Card = ({
                                 </span>
                             </div>
                             <div className="col-span-3 mt-4">
-                                <button className="w-full bg-emerald-500 text-white py-2 rounded-md hover:bg-emerald-600 transition-colors duration-300">
+                                <button
+                                    className="w-full text-lg cursor-pointer bg-emerald-500 text-white py-2 rounded-md hover:bg-emerald-600 transition-colors duration-300"
+                                    onClick={() => onVerMas(nombreCientifico)}
+                                >
                                     Ver más
                                 </button>
                             </div>
