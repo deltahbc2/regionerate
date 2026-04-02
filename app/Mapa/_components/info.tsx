@@ -41,27 +41,27 @@ const Info = () => {
 
                 <div className="flex justify-center md:justify-start flex-row flex-wrap my-2 gap-2">
                     <div className="flex flex-col items-center">
-                        <img src="/escarabajos.svg" alt="Escarabajos" className="size-12"/>
+                        <img src="/polinizadores/escarabajos.svg" alt="Escarabajos" className="size-12"/>
                         <p className="mt-2 text-xs font-medium">Escarabajos</p>
                     </div>
                     <div className="flex flex-col items-center">
-                        <img src="/abejas.svg" alt="Abejas" className="size-12"/>
+                        <img src="/polinizadores/abejas.svg" alt="Abejas" className="size-12"/>
                         <p className="mt-2 text-xs font-medium">Abejas</p>
                     </div>
                     <div className="flex flex-col items-center">
-                        <img src="/mariposas.svg" alt="Mariposas" className="size-12"/>
+                        <img src="/polinizadores/mariposas.svg" alt="Mariposas" className="size-12"/>
                         <p className="mt-2 text-xs font-medium">Mariposas</p>
                     </div>
                     <div className="flex flex-col items-center">
-                        <img src="/aves.svg" alt="Aves" className="size-12"/>
+                        <img src="/polinizadores/aves.svg" alt="Aves" className="size-12"/>
                         <p className="mt-2 text-xs font-medium">Aves</p>
                     </div>
                     <div className="flex flex-col items-center">
-                        <img src="/viento.svg" alt="Viento" className="size-12"/>
+                        <img src="/polinizadores/viento.svg" alt="Viento" className="size-12"/>
                         <p className="mt-2 text-xs font-medium">Viento</p>
                     </div>
                     <div className="flex flex-col items-center">
-                        <img src="/mamiferos.svg" alt="Mamíferos" className="size-12"/>
+                        <img src="/polinizadores/mamiferos.svg" alt="Mamíferos" className="size-12"/>
                         <p className="mt-2 text-xs font-medium">Mamíferos</p>
                     </div>
                 </div>

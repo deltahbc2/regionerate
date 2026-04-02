@@ -70,3 +70,13 @@ body{
 .nl-map-shell g[id][data-selected="true"]:hover path {
   fill: #305a4b !important;
 }
+
+.gradient-text{
+  background: linear-gradient(135deg, #28493d 0%, #4d8c73 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.objeto3d{
+  height: 70vh;
+}

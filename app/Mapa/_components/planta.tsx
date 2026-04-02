@@ -102,7 +102,6 @@ const Planta = ({
                     <h3 className="text-xl font-medium text-center text-black">Floracion:</h3>
                     <div className="grid grid-cols-12 w-full gap-1">
                         {mesesArray.map((mes, index) => (
-
                             <div key={index} className={`border-2 border-black h-6 ${planta.floracion.split(",").some(rango => {
                                 const [inicio, fin] = rango.split("-").map(Number);
                                 return index + 1 >= inicio && index + 1 <= fin;
@@ -134,7 +133,7 @@ const Planta = ({
                     <h3 className="text-xl font-medium text-center text-black">Sindrome de Polinización:</h3>
                     <div className="flex flex-row mt-2 gap-1">
                         {planta.polinizadores?.map((item, index) => (
-                            <img key={index} src={`/${item}.svg`} alt={item} className="size-8"/>
+                            <img key={index} src={`/polinizadores/${item}.svg`} alt={item} className="size-8"/>
                         ))}
                     </div>
                 </div>
