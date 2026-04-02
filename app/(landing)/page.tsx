@@ -7,7 +7,6 @@ const LandingPage = () => {
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <div className="order-2 lg:order-1 relative">
             <div className="bg-surface-container-high rounded-[2rem] h-[400px] forest-shadow border border-outline-variant/10">
-            {/* <iframe width='100%' height='400px' src="https://api.mapbox.com/styles/v1/deltahbc/cmngm77n8002s01r404vhgcic.html?title=false&access_token=pk.eyJ1IjoiZGVsdGFoYmMiLCJhIjoiY21uZ2xtdzJxMGFndDJvcTBleTFxMXY2MCJ9.tnavZ58FM4Qn5NflidPXkg&zoomwheel=false#2/38/-34" title="Untitled"></iframe> */}
               <MapClient/>
             </div>
           </div>
