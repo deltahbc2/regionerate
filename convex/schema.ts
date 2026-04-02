@@ -16,5 +16,14 @@ export default defineSchema({
         ecorregion: v.array(v.number()),
         imagen: v.string()
     })
-    .index("by_nombreCientifico", ["nombreCientifico"])
+    .index("by_nombreCientifico", ["nombreCientifico"]),
+
+    arbolesPlantados: defineTable({
+        idPlanta: v.id("plantas"),
+        latitud: v.number(),
+        longitud: v.number(),
+        fechaPlantacion: v.string(),
+        usuario: v.string()
+    })
+    .index("by_idPlanta", ["idPlanta"])
 });

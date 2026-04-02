@@ -1,7 +1,70 @@
+import MapClient from "@/components/mapClient";
+
 const LandingPage = () => {
-    return (
-        <h2>Landing</h2>
-    );
-}
- 
+  return (
+    <section className="py-24 bg-surface">
+      <div className="max-w-7xl mx-auto px-8">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="order-2 lg:order-1 relative">
+            <div className="bg-surface-container-high rounded-[2rem] h-[400px] forest-shadow border border-outline-variant/10">
+            {/* <iframe width='100%' height='400px' src="https://api.mapbox.com/styles/v1/deltahbc/cmngm77n8002s01r404vhgcic.html?title=false&access_token=pk.eyJ1IjoiZGVsdGFoYmMiLCJhIjoiY21uZ2xtdzJxMGFndDJvcTBleTFxMXY2MCJ9.tnavZ58FM4Qn5NflidPXkg&zoomwheel=false#2/38/-34" title="Untitled"></iframe> */}
+              <MapClient/>
+            </div>
+          </div>
+          <div className="order-1 lg:order-2">
+            <h2 className="font-headline text-4xl font-extrabold mb-8">
+              UrbanEcho: El nexo de la reforestación inteligente
+            </h2>
+            <p className="text-lg text-on-surface-variant mb-8 leading-relaxed">
+              Nuestra plataforma une a ciudadanos entusiastas con viveros
+              locales e instituciones gubernamentales para transformar el
+              concreto en pulmones urbanos.
+            </p>
+            <ul className="space-y-6">
+              <li className="flex gap-4">
+                <div className="flex-shrink-0 w-6 h-6 bg-primary text-on-primary rounded-full flex items-center justify-center mt-1">
+                  <span
+                    className="material-symbols-outlined text-[16px]"
+                    data-icon="check"
+                  >
+                    check
+                  </span>
+                </div>
+                <div>
+                  <p className="font-bold text-on-surface">
+                    Base de datos de especies nativas
+                  </p>
+                  <p className="text-on-surface-variant text-sm">
+                    Algoritmos que sugieren qué plantar según tu ubicación
+                    exacta.
+                  </p>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <div className="flex-shrink-0 w-6 h-6 bg-primary text-on-primary rounded-full flex items-center justify-center mt-1">
+                  <span
+                    className="material-symbols-outlined text-[16px]"
+                    data-icon="check"
+                  >
+                    check
+                  </span>
+                </div>
+                <div>
+                  <p className="font-bold text-on-surface">
+                    Trazabilidad total
+                  </p>
+                  <p className="text-on-surface-variant text-sm">
+                    Monitorea el crecimiento y salud de cada árbol plantado en
+                    tiempo real.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default LandingPage;

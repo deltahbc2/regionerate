@@ -34,3 +34,28 @@ export const getPlantaByNombreCientifico = query({
         return planta;
     }
 })
+
+export const getArbolesPlantados = query({
+    handler: async (ctx) =>{
+        const arbolesPlantados = await ctx.db
+            .query("arbolesPlantados")
+            .order("desc")
+            .collect();
+
+        const arbolesDetalle = await Promise.all(arbolesPlantados.map(async (arbol) => {
+            const planta = await ctx.db
+                .query("plantas")
+                .withIndex("by_id", (q) =>
+                    q.eq("_id", arbol.idPlanta)
+                )
+                .unique();
+            return {
+                ...arbol,
+                nombreComun: planta?.nombreComun || "Desconocido"
+            }
+        }));
+
+        return arbolesDetalle;
+
+    }
+})
