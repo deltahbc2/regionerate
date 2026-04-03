@@ -20,7 +20,7 @@ function Model() {
 
 const Objeto3d = () => {
     return (
-        <Canvas camera={{ position: [0, 0, 1] }}>
+        <Canvas camera={{ position: [0, 0, 1.1] }}>
             <ambientLight intensity={0.6} />
             
             <directionalLight 

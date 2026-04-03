@@ -6,7 +6,7 @@ const Mapa = () => {
       <div className="max-w-7xl mx-auto px-8">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <div className="order-2 lg:order-1 relative">
-            <div className="bg-surface-container-high rounded-[2rem] h-[400px] forest-shadow border border-outline-variant/10">
+            <div className="bg-surface-container-high h-[400px] forest-shadow border border-outline-variant/10">
               <MapClient/>
             </div>
           </div>

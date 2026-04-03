@@ -175,7 +175,7 @@ const MapPage = () => {
                     <>
                         <button
                             type="button"
-                            className="absolute top-4 mb-4 w-fit cursor-pointer rounded-md border border-emerald-600 px-3 py-1 text-emerald-700 hover:bg-emerald-50"
+                            className="text-md absolute top-16 md:top-4 mb-4 w-fit cursor-pointer rounded-md border border-emerald-600 px-3 py-1 text-emerald-700 hover:bg-emerald-50"
                             onClick={() => setSelectedMunicipio(null)}
                         >
                             Volver
