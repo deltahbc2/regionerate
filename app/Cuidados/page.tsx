@@ -1,5 +1,9 @@
 'use client';
-
+import "../globals.css";
+import Carrucel from "./_components/carrucel";
+import Encuenta from "./_components/encuenta";
+import Cuidados from "./_components/cuidados";
+import Modales from "./_components/modales";
 import { useState, useEffect, useCallback } from 'react';
 
 // ===== TIPOS =====
@@ -25,9 +29,9 @@ type ModalContent = {
 
 // ===== DATOS =====
 const slides: Slide[] = [
-  { src: '/imag/plantar-arbol.jpg', alt: 'Plantar árbol' },
-  { src: '/imag/llenar-hoyo.jpg', alt: 'Llenar hoyo' },
-  { src: '/imag/regar-carrusel.jpg', alt: 'Regar árbol' },
+  { src: '/cuidados/plantar-arbol.jpg', alt: 'Plantar árbol' },
+  { src: '/cuidados/llenar-hoyo.jpg', alt: 'Llenar hoyo' },
+  { src: '/cuidados/regar-carrusel.jpg', alt: 'Regar árbol' },
 ];
 
 const considerationCards: Card[] = [
@@ -35,10 +39,10 @@ const considerationCards: Card[] = [
     id: 'arbol',
     title: 'El árbol',
     description: 'Cada centímetro de este coloso tiene un propósito vital, una misión crítica en una compleja sinfonía de supervivencia. Elevándose hacia el cielo, una intrincada arquitectura se despliega, extensiones estratégicas diseñadas para un propósito singular: posicionar perfectamente incontables paneles verdes. Estas no son simples decoraciones; son verdaderas plantas de energía solar.',
-    image: '/imag/arbol.jpg',
+    image: '/cuidados/arbol.jpg',
     modalContent: {
       title: 'El árbol',
-      image: '/imag/arbol-ventana.jpg',
+      image: '/cuidados/arbol-ventana.jpg',
       body: <p>Contenido detallado del árbol...</p>,
     },
   },
@@ -46,11 +50,11 @@ const considerationCards: Card[] = [
     id: 'herramientas',
     title: 'Herramientas necesarias',
     description: 'Antes de ensuciarnos las manos, debemos reunir a nuestros aliados: un conjunto de instrumentos diseñados no solo para facilitar la tarea física, sino para garantizar la supervivencia del nuevo huésped. Plantar un árbol es un acto de fe en el futuro, pero para que esa fe rinda frutos, la buena voluntad no es suficiente.',
-    image: '/imag/herramientas.jpg',
+    image: '/cuidados/herramientas.jpg',
     reverse: true,
     modalContent: {
       title: 'Herramientas',
-      image: '/imag/herramientas-ventana.jpg',
+      image: '/cuidados/herramientas-ventana.jpg',
       body: <p>Contenido detallado de herramientas...</p>,
     },
   },
@@ -58,10 +62,10 @@ const considerationCards: Card[] = [
     id: 'pozo',
     title: 'El pozo',
     description: 'La excavación inicial es, quizás, el paso más incomprendido y crítico de todo el proceso de plantación. Un error de cálculo aquí, por pequeño que parezca en centímetros, puede significar la diferencia entre un árbol que lucha por sobrevivir y uno que prospera con vigor. El secreto no está en qué tan profundo puedes llegar, sino en qué tan lejos puedes preparar el terreno.',
-    image: '/imag/pozo.jpg',
+    image: '/cuidados/pozo.jpg',
     modalContent: {
       title: 'El pozo',
-      image: '/imag/pozo-ventana.jpg',
+      image: '/cuidados/pozo-ventana.jpg',
       body: <p>Contenido detallado del pozo...</p>,
     },
   },
@@ -69,11 +73,11 @@ const considerationCards: Card[] = [
     id: 'riego',
     title: 'El riego',
     description: 'Abrir la llave y dejar correr el agua por unos minutos parece la respuesta obvia, pero hidratar un árbol es un acto de precisión, no de volumen improvisado. Un riego superficial es un espejismo que debilita los cimientos invisibles del árbol. No se trata de cuántas veces mojas la tierra, sino de cómo logras que el líquido vital llegue a donde realmente importa.',
-    image: '/imag/riego.jpg',
+    image: '/cuidados/riego.jpg',
     reverse: true,
     modalContent: {
       title: 'El riego',
-      image: '/imag/regar-ventana.jpg',
+      image: '/cuidados/regar-ventana.jpg',
       body: <p>Contenido detallado del riego...</p>,
     },
   },
@@ -90,10 +94,10 @@ const careCards: Array<{
     id: 'partes',
     title: 'Partes de un árbol',
     subtitle: 'Conoce cada sección',
-    image: '/imag/partes-arbol.jpg',
+    image: '/cuidados/partes-arbol.jpg',
     modal: {
       title: 'Partes de un árbol',
-      image: '/imag/partes-arbol-ventana.jpg',
+      image: '/cuidados/partes-arbol-ventana.jpg',
       body: (
         <>
           <p><strong>Raíces:</strong> Son la parte subterránea del árbol que cumplen la función de anclarlo al suelo y absorber agua y nutrientes.</p>
@@ -110,10 +114,10 @@ const careCards: Array<{
     id: 'herramientas',
     title: 'Herramientas y materiales',
     subtitle: 'Lo que necesitas',
-    image: '/imag/herramientas-materiales.png',
+    image: '/cuidados/herramientas-materiales.png',
     modal: {
       title: 'Herramientas y materiales',
-      image: '/imag/herramientas-ventana.jpg',
+      image: '/cuidados/herramientas-ventana.jpg',
       body: (
         <>
           <p><strong>° Árbol nativo</strong></p>
@@ -131,21 +135,21 @@ const careCards: Array<{
     id: 'pozo',
     title: '¿Qué tan grande el pozo?',
     subtitle: 'Medidas ideales',
-    image: '/imag/pozo-grande.jpg',
+    image: '/cuidados/pozo-grande.jpg',
     modal: {
       title: '¿Qué tan grande debe ser la cepa o pozo?',
-      image: '/imag/pozo-ventana.jpg',
-      body: <img src="/imag/tabla.png" alt="Tabla de medidas" className="w-full max-w-[500px] h-auto" />,
+      image: '/cuidados/pozo-ventana.jpg',
+      body: <img src="/cuidados/tabla.png" alt="Tabla de medidas" className="w-full max-w-[500px] h-auto" />,
     },
   },
   {
     id: 'riego',
     title: '¿Cómo regar tu árbol?',
     subtitle: 'Técnicas efectivas',
-    image: '/imag/regar.jpg',
+    image: '/cuidados/regar.jpg',
     modal: {
       title: '¿Cómo debes regar tu árbol?',
-      image: '/imag/regar-ventana.jpg',
+      image: '/cuidados/regar-ventana.jpg',
       body: (
         <>
           <p>Al plantar tu árbol, deja un <strong>encarcador de 10 cm de profundidad</strong> alrededor del tronco para que el <strong>agua se acumule</strong> y el árbol se mantenga <strong>hidratado</strong>.</p>
@@ -164,10 +168,10 @@ const careCards: Array<{
     id: 'cuidar',
     title: '¿Cómo cuidar tu árbol?',
     subtitle: 'Mantenimiento esencial',
-    image: '/imag/cuidar.jpg',
+    image: '/cuidados/cuidar.jpg',
     modal: {
       title: '¿Cómo cuidar tu árbol?',
-      image: '/imag/cuidados-ventana.jpg',
+      image: '/cuidados/cuidados-ventana.jpg',
       body: (
         <>
           <p><strong>Acolchonado:</strong> Capa de material vegetal reciclado (astillas de madera, hojas secas, corteza, etc) que se coloca sobre la superficie del suelo para protegerlo del sol y la erosión para mejorarlo.</p>
@@ -181,10 +185,10 @@ const careCards: Array<{
     id: 'pasos',
     title: 'Plantar en 8 pasos',
     subtitle: 'Guía paso a paso',
-    image: '/imag/plantar-pasos.jpg',
+    image: '/cuidados/plantar-pasos.jpg',
     modal: {
       title: 'Plantar tu árbol en 8 pasos',
-      image: '/imag/pasos.jpg',
+      image: '/cuidados/pasos.jpg',
       body: (
         <ol className="list-decimal list-inside space-y-2">
           <li><strong>Excave un pozo:</strong> De 40 a 60 cm, más ancho que el cepellón y tan profundo como sus raíces. Separe la tierra superficial.</li>
@@ -310,7 +314,7 @@ export default function CuidadosPage() {
       {/* ===== HEADER ===== */}
       <header className="sticky top-0 z-[1000] bg-primary text-accent flex items-center justify-between py-3 px-[5%] shadow-[0_2px_15px_rgba(0,0,0,0.2)]">
         <div className="logo-container flex items-center gap-3">
-          <img src="/imag/logo.png" alt="Logo" className="w-[45px] h-[50px] object-contain rounded-[4px]" />
+          <img src="/cuidados/logo.png" alt="Logo" className="w-[45px] h-[50px] object-contain rounded-[4px]" />
           <div className="logo-text flex flex-col">
             <strong className="text-[22px] text-accent">Regionerate</strong>
             <span className="text-[14px] text-white/90 -mt-[3px]">| Cuidados</span>
@@ -343,173 +347,16 @@ export default function CuidadosPage() {
       </header>
 
       {/* ===== BANNER CON CARRUSEL ===== */}
-      <section className="relative w-full h-[500px] bg-gradient-to-br from-primary to-primaryLight overflow-hidden" id="inicio">
-        <div 
-          className="absolute inset-0"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          {/* Slides */}
-          {slides.map((slide, index) => (
-            <img
-              key={index}
-              src={slide.src}
-              alt={slide.alt}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
-              }`}
-            />
-          ))}
-          
-          {/* Indicadores */}
-          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2.5 z-[10]">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
-                  index === currentSlide 
-                    ? 'bg-accent scale-[1.3]' 
-                    : 'bg-white/50 hover:bg-white/80'
-                }`}
-                aria-label={`Ir a slide ${index + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Contenido del banner */}
-        <div className="relative z-5 text-white text-center py-10 px-5 h-full flex flex-col justify-center items-center bg-gradient-to-b from-black/20 to-primary/70">
-          <h1 className="text-[2.5rem] mb-6 max-w-[800px] text-shadow-[2px_2px_4px_rgba(0,0,0,0.3)] leading-[1.3]">
-            Guía de Implementación y Mantenimiento de Árboles
-          </h1>
-          <a href="#cuidados" onClick={(e) => handleNavClick(e, 'cuidados')} className="inline-block no-underline">
-            <button className="bg-accent text-white border-none rounded-full px-8 py-3 text-[17px] font-bold cursor-pointer transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.2)] hover:bg-accentHover hover:-translate-y-0.75 hover:shadow-[0_6px_20px_rgba(0,0,0,0.3)]">
-              Empezar a Conocer
-            </button>
-          </a>
-        </div>
-      </section>
+      <Carrucel/>
 
       {/* ===== SECCIÓN ¿QUÉ CONSIDERAR? ===== */}
-      <section className="py-[60px] px-[5%] bg-bgCard" id="encuenta">
-        <h1 className="text-center text-[2.2rem] text-primary mb-[45px] relative pb-4 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-accent after:rounded-[2px]">
-          ¿Qué hay que considerar para el cuidado de un árbol?
-        </h1>
-        
-        <div className="grid gap-[30px] max-w-[1200px] mx-auto">
-          {considerationCards.map((card, index) => (
-            <article
-              key={card.id}
-              data-card-id={card.id}
-              className={`flex bg-white rounded-[20px] overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-card-hover ${
-                visibleCards.has(card.id) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-              } ${card.reverse ? 'flex-row-reverse' : ''}`}
-            >
-              <div className="flex-1 min-h-[280px] relative overflow-hidden group">
-                <img 
-                  src={card.image} 
-                  alt={card.title} 
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent" />
-              </div>
-              <div className="flex-[1.2] p-[30px] flex flex-col justify-center">
-                <h2 className="text-primary mb-4 text-[1.5rem]">{card.title}</h2>
-                <p className="text-black mb-2.5">{card.description}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      <Encuenta/>
 
       {/* ===== SECCIÓN CUIDADOS ===== */}
-      <section className="py-[60px] px-[5%] bg-white" id="cuidados">
-        <h2 className="text-center text-[2.2rem] text-primary mb-[45px] relative pb-4 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-accent after:rounded-[2px]">
-          Cuidados que debes saber
-        </h2>
-        
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-[25px] max-w-[1400px] mx-auto">
-          {careCards.map((card) => (
-            <div
-              key={card.id}
-              data-card-id={`care-${card.id}`}
-              onClick={() => openModal(card.id)}
-              className={`bg-white rounded-[20px] overflow-hidden shadow-[0_8px_25px_rgba(48,90,75,0.1)] cursor-pointer transition-all duration-[350ms] hover:-translate-y-2.5 hover:shadow-card-hover relative group ${
-                visibleCards.has(`care-${card.id}`) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-              }`}
-            >
-              <div className="relative h-[200px] overflow-hidden">
-                <img 
-                  src={card.image} 
-                  alt={card.title} 
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
-                />
-                <div className="absolute inset-0 bg-primary/70 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <span className="text-[2.5rem] text-accent animate-pulse">🌿</span>
-                </div>
-              </div>
-              <div className="p-5 text-center">
-                <h3 className="text-primary text-[1.2rem] mb-2">{card.title}</h3>
-                <p className="text-black text-[0.95rem] m-0">{card.subtitle}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Cuidados/>
 
       {/* ===== MODALES ===== */}
-      {activeModal && (
-        <>
-          {/* Overlay */}
-          <div 
-            className="fixed inset-0 bg-black/60 backdrop-blur-[8px] z-[1999]"
-            onClick={closeModal}
-          />
-          
-          {/* Contenido del modal */}
-          <div className="fixed inset-0 z-[2000] flex items-center justify-center p-5">
-            <div className="bg-white rounded-[25px] p-[30px] max-w-[750px] w-full max-h-[90vh] overflow-y-auto relative animate-[modal-slide_0.4s_ease] shadow-modal">
-              {/* Botón cerrar */}
-              <button 
-                onClick={closeModal}
-                className="absolute top-[15px] right-5 text-[32px] text-black cursor-pointer transition-colors duration-200 hover:text-accent leading-none"
-                aria-label="Cerrar modal"
-              >
-                &times;
-              </button>
-              
-              {/* Contenido dinámico según el modal activo */}
-              {(() => {
-                const modal = careCards.find(c => c.id === activeModal)?.modal;
-                if (!modal) return null;
-                
-                return (
-                  <>
-                    <h3 className="text-primary mb-5 text-[1.6rem] text-center">{modal.title}</h3>
-                    <img 
-                      src={modal.image} 
-                      alt={modal.title} 
-                      className="w-full h-[320px] object-cover rounded-[15px] mb-5 shadow-[0_8px_20px_rgba(0,0,0,0.15)]" 
-                    />
-                    <div className="text-black leading-[1.7] space-y-3">
-                      {modal.body}
-                    </div>
-                    <button 
-                      onClick={closeModal}
-                      className="block mx-auto mt-5 bg-primary text-white border-none rounded-full px-7 py-2.5 text-[15px] font-medium cursor-pointer transition-all duration-300 hover:bg-primaryLight hover:-translate-y-0.5"
-                    >
-                      Cerrar
-                    </button>
-                  </>
-                );
-              })()}
-            </div>
-          </div>
-        </>
-      )}
+      <Modales/>
 
       {/* ===== FOOTER ===== */}
       <footer className="bg-primary text-white text-center py-6 px-5 text-[14px]" id="contacto">
