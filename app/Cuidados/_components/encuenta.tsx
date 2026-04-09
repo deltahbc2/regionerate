@@ -1,5 +1,34 @@
-const Encuenta = () => {
-    return( 
+import { useState, useEffect} from 'react';
+import {considerationCards} from '../data/contenido'
+
+export default function Encuenta() {
+        const [visibleCards, setVisibleCards] = useState<Set<string>>(new Set());
+
+        useEffect(() => {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  const id = entry.target.getAttribute('data-card-id');
+                  if (id) {
+                    setVisibleCards((prev) => new Set(prev).add(id));
+                    observer.unobserve(entry.target);
+                  }
+                }
+              });
+            },
+            { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+          );
+
+          document.querySelectorAll('[data-card-id]').forEach((card) => {
+            observer.observe(card);
+          });
+
+          return () => observer.disconnect();
+        }, []);
+
+          return( 
+
             <section className="py-[60px] px-[5%] bg-bgCard" id="encuenta">
                     <h1 className="text-center text-[2.2rem] text-primary mb-[45px] relative pb-4 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-accent after:rounded-[2px]">
                     ¿Qué hay que considerar para el cuidado de un árbol?
@@ -31,5 +60,5 @@ const Encuenta = () => {
                     ))}
                     </div>
             </section>
-      );
-}
+    );  
+  }
