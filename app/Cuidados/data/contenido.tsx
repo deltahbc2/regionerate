@@ -1,9 +1,9 @@
 import { Slide, ModalContent, ConsiderationCard, CareCard } from '../types/tipos';
 
 export const slides: Slide[] = [
-  { src: '/imag/plantar-arbol.jpg', alt: 'Plantar árbol' },
-  { src: '/imag/llenar-hoyo.jpg', alt: 'Llenar hoyo' },
-  { src: '/imag/regar-carrusel.jpg', alt: 'Regar árbol' },
+  { src: '/cuidados/plantar-arbol.jpg', alt: 'Plantar árbol' },
+  { src: '/cuidados/llenar-hoyo.jpg', alt: 'Llenar hoyo' },
+  { src: '/cuidados/regar-carrusel.jpg', alt: 'Regar árbol' },
 ];
 
 export const considerationCards: ConsiderationCard[] = [
@@ -11,26 +11,26 @@ export const considerationCards: ConsiderationCard[] = [
     id: 'arbol',
     title: 'El árbol',
     description: 'Cada centímetro de este coloso tiene un propósito vital, una misión crítica en una compleja sinfonía de supervivencia. Elevándose hacia el cielo, una intrincada arquitectura se despliega, extensiones estratégicas diseñadas para un propósito singular: posicionar perfectamente incontables paneles verdes. Estas no son simples decoraciones; son verdaderas plantas de energía solar.',
-    image: '/imag/arbol.jpg',
+    image: '/cuidados/arbol.jpg',
   },
   {
     id: 'herramientas',
     title: 'Herramientas necesarias',
     description: 'Antes de ensuciarnos las manos, debemos reunir a nuestros aliados: un conjunto de instrumentos diseñados no solo para facilitar la tarea física, sino para garantizar la supervivencia del nuevo huésped. Plantar un árbol es un acto de fe en el futuro, pero para que esa fe rinda frutos, la buena voluntad no es suficiente.',
-    image: '/imag/herramientas.jpg',
+    image: '/cuidados/herramientas.jpg',
     reverse: true,
   },
   {
     id: 'pozo',
     title: 'El pozo',
     description: 'La excavación inicial es, quizás, el paso más incomprendido y crítico de todo el proceso de plantación. Un error de cálculo aquí, por pequeño que parezca en centímetros, puede significar la diferencia entre un árbol que lucha por sobrevivir y uno que prospera con vigor. El secreto no está en qué tan profundo puedes llegar, sino en qué tan lejos puedes preparar el terreno.',
-    image: '/imag/pozo.jpg',
+    image: '/cuidados/pozo.jpg',
   },
   {
     id: 'riego',
     title: 'El riego',
     description: 'Abrir la llave y dejar correr el agua por unos minutos parece la respuesta obvia, pero hidratar un árbol es un acto de precisión, no de volumen improvisado. Un riego superficial es un espejismo que debilita los cimientos invisibles del árbol. No se trata de cuántas veces mojas la tierra, sino de cómo logras que el líquido vital llegue a donde realmente importa.',
-    image: '/imag/riego.jpg',
+    image: '/cuidados/riego.jpg',
     reverse: true,
   },
 ];
@@ -40,10 +40,10 @@ export const careCards: CareCard[] = [
     id: 'partes',
     title: 'Partes de un árbol',
     subtitle: 'Conoce cada sección',
-    image: '/imag/partes-arbol.jpg',
+    image: '/cuidados/partes-arbol.jpg',
     modal: {
       title: 'Partes de un árbol',
-      image: '/imag/partes-arbol-ventana.jpg',
+      image: '/cuidados/partes-arbol-ventana.jpg',
       body: (
         <>
           <p><strong>Raíces:</strong> Son la parte subterránea del árbol que cumplen la función de anclarlo al suelo y absorber agua y nutrientes.</p>
@@ -60,10 +60,10 @@ export const careCards: CareCard[] = [
     id: 'herramientas',
     title: 'Herramientas y materiales',
     subtitle: 'Lo que necesitas',
-    image: '/imag/herramientas-materiales.png',
+    image: '/cuidados/herramientas-materiales.png',
     modal: {
       title: 'Herramientas y materiales',
-      image: '/imag/herramientas-ventana.jpg',
+      image: '/cuidados/herramientas-ventana.jpg',
       body: (
         <>
           <p><strong>° Árbol nativo</strong></p>
@@ -81,21 +81,21 @@ export const careCards: CareCard[] = [
     id: 'pozo',
     title: '¿Qué tan grande el pozo?',
     subtitle: 'Medidas ideales',
-    image: '/imag/pozo-grande.jpg',
+    image: '/cuidados/pozo-grande.jpg',
     modal: {
       title: '¿Qué tan grande debe ser la cepa o pozo?',
-      image: '/imag/pozo-ventana.jpg',
-      body: <img src="/imag/tabla.png" alt="Tabla de medidas" className="w-full max-w-[500px] h-auto" />,
+      image: '/cuidados/pozo-ventana.jpg',
+      body: <img src="/cuidados/tabla.png" alt="Tabla de medidas" className="w-full max-w-[500px] h-auto" />,
     },
   },
   {
     id: 'riego',
     title: '¿Cómo regar tu árbol?',
     subtitle: 'Técnicas efectivas',
-    image: '/imag/regar.jpg',
+    image: '/cuidados/regar.jpg',
     modal: {
       title: '¿Cómo debes regar tu árbol?',
-      image: '/imag/regar-ventana.jpg',
+      image: '/cuidados/regar-ventana.jpg',
       body: (
         <>
           <p>Al plantar tu árbol, deja un <strong>encarcador de 10 cm de profundidad</strong> alrededor del tronco para que el <strong>agua se acumule</strong> y el árbol se mantenga <strong>hidratado</strong>.</p>
@@ -114,10 +114,10 @@ export const careCards: CareCard[] = [
     id: 'cuidar',
     title: '¿Cómo cuidar tu árbol?',
     subtitle: 'Mantenimiento esencial',
-    image: '/imag/cuidar.jpg',
+    image: '/cuidados/cuidar.jpg',
     modal: {
       title: '¿Cómo cuidar tu árbol?',
-      image: '/imag/cuidados-ventana.jpg',
+      image: '/cuidados/cuidados-ventana.jpg',
       body: (
         <>
           <p><strong>Acolchonado:</strong> Capa de material vegetal reciclado (astillas de madera, hojas secas, corteza, etc) que se coloca sobre la superficie del suelo para protegerlo del sol y la erosión para mejorarlo.</p>
@@ -131,10 +131,10 @@ export const careCards: CareCard[] = [
     id: 'pasos',
     title: 'Plantar en 8 pasos',
     subtitle: 'Guía paso a paso',
-    image: '/imag/plantar-pasos.jpg',
+    image: '/cuidados/plantar-pasos.jpg',
     modal: {
       title: 'Plantar tu árbol en 8 pasos',
-      image: '/imag/pasos.jpg',
+      image: '/cuidados/pasos.jpg',
       body: (
         <ol className="list-decimal list-inside space-y-2">
           <li><strong>Excave un pozo:</strong> De 40 a 60 cm, más ancho que el cepellón y tan profundo como sus raíces. Separe la tierra superficial.</li>

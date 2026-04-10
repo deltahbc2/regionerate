@@ -2,6 +2,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import '../globals.css'
 import Header from './_components/header';
 import Carrucel from './_components/carrucel';
 import Encuenta from './_components/encuenta';
