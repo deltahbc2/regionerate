@@ -138,6 +138,12 @@ const Planta = ({
                     </div>
                 </div>
             </div>
+
+            <button className="bg-amber-400 p-4" >COMPRAR</button>
+            {/* //Al dar click en comprar mostrará los viveros que tengan ese arbol. Mapa
+            //Ruta Indicaciones. Validar.
+            //Validar foto. Requiere nombre, correo, ubicación.
+            //Boton de enviar -> Insert a la base de datos. */}
         </>
     );
 }

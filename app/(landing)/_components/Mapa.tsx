@@ -6,7 +6,7 @@ const Mapa = () => {
       <div className="max-w-7xl mx-auto px-8">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <div className="order-2 lg:order-1 relative">
-            <div className="bg-surface-container-high h-[400px] forest-shadow border border-outline-variant/10">
+            <div className="bg-surface-container-high h-100 forest-shadow border border-outline-variant/10">
               <MapClient/>
             </div>
           </div>
@@ -21,7 +21,7 @@ const Mapa = () => {
             </p>
             <ul className="space-y-6">
               <li className="flex gap-4">
-                <div className="flex-shrink-0 w-6 h-6 bg-primary text-on-primary rounded-full flex items-center justify-center mt-1">
+                <div className="shrink-0 w-6 h-6 bg-primary text-on-primary rounded-full flex items-center justify-center mt-1">
                   <span
                     className="material-symbols-outlined text-[16px]"
                     data-icon="check"
@@ -40,7 +40,7 @@ const Mapa = () => {
                 </div>
               </li>
               <li className="flex gap-4">
-                <div className="flex-shrink-0 w-6 h-6 bg-primary text-on-primary rounded-full flex items-center justify-center mt-1">
+                <div className="shrink-0 w-6 h-6 bg-primary text-on-primary rounded-full flex items-center justify-center mt-1">
                   <span
                     className="material-symbols-outlined text-[16px]"
                     data-icon="check"
