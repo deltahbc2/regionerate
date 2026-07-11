@@ -28,7 +28,7 @@ const Card = ({
                         <div className="w-3 h-3 rounded-full bg-green-400"></div>
                     </div>
                     <div className="bg-white px-4 py-1 rounded-md shadow-sm text-xs font-medium text-stone-500 border border-stone-100">
-                        echonl.com
+                        regionerate.com
                     </div>
                     <div className="w-16"></div>
                 </div>

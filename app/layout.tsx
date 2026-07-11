@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 const Maven = Maven_Pro({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Echo NL",
+  title: "Regionerate",
   description: "Reforestando Nuevo León, un arbol a la vez.",
 };
 

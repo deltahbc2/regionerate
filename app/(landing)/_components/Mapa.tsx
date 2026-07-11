@@ -12,7 +12,7 @@ const Mapa = () => {
           </div>
           <div className="order-1 lg:order-2">
             <h2 className="font-headline text-4xl font-extrabold mb-8">
-              UrbanEcho: El nexo de la reforestación inteligente
+              Regionerate: El nexo de la reforestación inteligente
             </h2>
             <p className="text-lg text-on-surface-variant mb-8 leading-relaxed">
               Nuestra plataforma une a ciudadanos entusiastas con viveros
