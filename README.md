@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Regionerate
 
-## Getting Started
+Regionerate es una plataforma web para explorar especies nativas de Nuevo Leon y apoyar decisiones de reforestacion con datos. La app combina un mapa interactivo, fichas de plantas y un backend con Convex para consultar informacion por ecorregion.
 
-First, run the development server:
+## Que hace
+
+- Muestra una landing page con presentacion del proyecto.
+- Permite explorar un mapa interactivo de Nuevo Leon.
+- Filtra especies nativas segun la ecorregion seleccionada.
+- Presenta informacion detallada de cada planta.
+- Mantiene datos de plantas y arboles plantados en Convex.
+
+## Stack
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Convex
+- Leaflet
+- Three.js y React Three Fiber
+- Sonner para notificaciones
+
+## Requisitos
+
+- Node.js 20 o superior
+- npm
+- Una URL publica de Convex en `NEXT_PUBLIC_CONVEX_URL`
+
+## Instalacion
+
+```bash
+npm install
+```
+
+## Variables de entorno
+
+Crea un archivo `.env.local` en la raiz del proyecto con al menos:
+
+```bash
+NEXT_PUBLIC_CONVEX_URL=tu_url_de_convex
+```
+
+## Desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre `http://localhost:3000` para ver la app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev`: inicia el servidor de desarrollo.
+- `npm run build`: genera la version de produccion.
+- `npm run start`: levanta la version compilada.
+- `npm run lint`: ejecuta ESLint.
 
-## Learn More
+## Estructura general
 
-To learn more about Next.js, take a look at the following resources:
+- `app/`: rutas y vistas principales.
+- `components/`: componentes compartidos.
+- `convex/`: esquema y consultas de la base de datos.
+- `providers/`: configuracion del cliente de Convex.
+- `public/`: imagenes, SVGs y modelos usados por la interfaz.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Datos
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+La base de datos define dos tablas principales:
 
-## Deploy on Vercel
+- `plantas`: catalogo de especies con nombre comun, nombre cientifico, ecorregion, floracion, altura, requerimiento hidrico, polinizadores e imagen.
+- `arbolesPlantados`: registros de arboles plantados con referencia a una planta, coordenadas, fecha y usuario.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Notas
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- El mapa principal carga el archivo `public/nuevoleon.svg`.
+- La informacion de especies se consulta desde Convex segun la ecorregion seleccionada.
