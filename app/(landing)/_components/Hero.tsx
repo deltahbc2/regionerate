@@ -12,7 +12,7 @@ const Hero = () => {
                         <span className="text-xs font-medium text-neutral-600 tracking-wide uppercase">DeltaHBC</span>
                     </div>
                     
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-[#11221c] mb-4 leading-[1.1]"
+                    <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-[#11221c] mb-4 leading-[1.1]"
                         style={{
                             fontFamily: 'Maven Pro'
                         }}>
@@ -26,10 +26,10 @@ const Hero = () => {
                     </p>
                     
                     <div className="flex flex-col md:flex-row justify-center items-center gap-4">
-                        <Link href='/Mapa' className="w-auto px-6 py-3 bg-[#28493d] text-white rounded-full font-medium text-lg  hover:shadow-xl flex items-center justify-center gap-2">
+                        <Link href='/Mapa' className="w-auto px-6 py-3 bg-[#28493d] text-white rounded-full font-medium text-md md:text-lg hover:shadow-xl flex items-center justify-center gap-2">
                             <Map/> Explorar mapa
                         </Link>
-                        <a className="w-auto px-6 py-3 bg-white text-neutral-800 rounded-full font-medium text-lg border border-eco-200 hover:border-eco-400 transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-2">
+                        <a className="w-auto px-6 py-3 bg-white text-neutral-800 rounded-full font-medium text-md md:text-lg border border-eco-200 hover:border-eco-400 transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-2">
                             Conoce cómo funciona <ArrowRight />
                         </a>
                     </div>

@@ -5,6 +5,7 @@ import { Maven_Pro } from "next/font/google";
 import { ConvexClientProvider } from "@/providers/convex-provider";
 import { Toaster } from "sonner";
 import Menu from "@/components/menu";
+import Footer from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 const Maven = Maven_Pro({ subsets: ["latin"] });
@@ -23,9 +24,10 @@ export default function RootLayout({
     <html lang="es-MX">
       <body className={inter.className + " min-h-full flex flex-col "}>
         <ConvexClientProvider>
-          {/* <Menu/> */}
+          <Menu/>
           {children}
           <Toaster position='bottom-center'/>
+          <Footer/>
         </ConvexClientProvider>
       </body>
     </html>
