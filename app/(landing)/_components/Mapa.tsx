@@ -1,4 +1,6 @@
 import MapClient from "@/components/mapClient";
+import Link from "next/link";
+import { ArrowRight, Map } from "lucide-react";
 
 const Mapa = () => {
     return (
@@ -9,59 +11,47 @@ const Mapa = () => {
                         <MapClient/>
                     </div>
                 </div>
-                <div className="order-1 lg:order-2">
-                    <div className="inline-block px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-sm font-semibold mb-2">La Solución</div>
 
-                    <h2 className="text-4xl font-extrabold mb-4">Regionerate: El nexo de la reforestación inteligente</h2>
-                    <p className="text-lg text-on-surface-variant mb-8 leading-relaxed">
-                    Nuestra plataforma une a ciudadanos entusiastas con viveros
-                    locales e instituciones gubernamentales para transformar el
-                    concreto en pulmones urbanos.
+                <div className="order-1 lg:order-2">
+                    <div className="inline-block px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-sm font-semibold mb-2">La solución</div>
+                    <h2 className="text-4xl font-extrabold mb-4">
+                        Cada marcador es un arbol plantado
+                    </h2>
+
+                    <p className="text-lg text-on-surface-variant mb-4 leading-relaxed">
+                        Explora los arboles registrados en el mapa. Al dar click en cada
+                        marcador puedes ver su informacion, incluyendo especie, ubicacion y
+                        fecha de la plantacion.
                     </p>
-                    <ul className="space-y-6">
-                        <li className="flex gap-4">
-                            <div className="shrink-0 w-6 h-6 bg-primary text-on-primary rounded-full flex items-center justify-center mt-1">
-                            <span
-                                className="material-symbols-outlined text-[16px]"
-                                data-icon="check"
-                            >
-                                check
-                            </span>
-                            </div>
-                            <div>
-                            <p className="font-bold text-on-surface">
-                                Base de datos de especies nativas
-                            </p>
-                            <p className="text-on-surface-variant text-sm">
-                                Algoritmos que sugieren qué plantar según tu ubicación
-                                exacta.
-                            </p>
-                            </div>
-                        </li>
-                        <li className="flex gap-4">
-                            <div className="shrink-0 w-6 h-6 bg-primary text-on-primary rounded-full flex items-center justify-center mt-1">
-                            <span
-                                className="material-symbols-outlined text-[16px]"
-                                data-icon="check"
-                            >
-                                check
-                            </span>
-                            </div>
-                            <div>
-                            <p className="font-bold text-on-surface">
-                                Trazabilidad total
-                            </p>
-                            <p className="text-on-surface-variant text-sm">
-                                Monitorea el crecimiento y salud de cada árbol plantado en
-                                tiempo real.
-                            </p>
-                            </div>
-                        </li>
-                    </ul>
+
+                    <div className="space-y-4">
+                        <div className="rounded-3xl border border-neutral-200 bg-white p-5 shadow-sm">
+                            <p className="font-bold text-on-surface mb-3">Los iconos indican hace cuanto se planto cada arbol:</p>
+
+                            <ul className="space-y-3 text-sm text-on-surface-variant">
+                                <li className="flex items-start gap-3">
+                                    <span className="text-base leading-none">🌱</span>
+                                    <span><strong className="text-on-surface">Reciente:</strong> de 0 a 3 meses.</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-base leading-none">🪴</span>
+                                    <span><strong className="text-on-surface">Mas tiempo:</strong> de 4 a 12 meses.</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-base leading-none">🌳</span>
+                                    <span><strong className="text-on-surface">Mas tiempo:</strong> 1 año o mas.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <Link href="/Mapa" className="inline-flex w-fit items-center justify-center gap-2 rounded-full bg-[#28493d] px-6 py-3 font-medium text-white transition-all hover:-translate-y-0.5 hover:shadow-lg">
+                            <Map className="size-4" />Ir al mapa <ArrowRight className="size-4" />
+                        </Link>
+                    </div>
                 </div>
             </div>
         </section>
     );
-}
- 
+};
+
 export default Mapa;
