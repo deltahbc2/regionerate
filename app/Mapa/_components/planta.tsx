@@ -119,9 +119,7 @@ const Planta = ({
                             </div>
                         ))}
                     </div>
-                    <p>{
-                        
-                    }</p>
+                    
                     <p className="text-md text-center">{
                         planta.floracion.split(",").length === 0
                             ? "Sin informacion"
