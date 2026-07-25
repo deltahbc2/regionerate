@@ -1,15 +1,25 @@
+"use client";
+
+import { useState } from "react";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
+import Modal from "./modal";
 
 const Planta = ({
     nombreCientifico
 }: {
     nombreCientifico: string;
 }) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const planta = useQuery(
         api.plantas.getPlantaByNombreCientifico,
         { nombreCientifico }
     );
+
+    const handlePlantar = () => {
+        setIsModalOpen(true);
+    };
 
     const mesesArray = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
@@ -139,11 +149,15 @@ const Planta = ({
                 </div>
             </div>
 
-            <button className="bg-amber-400 p-4" >COMPRAR</button>
-            {/* //Al dar click en comprar mostrará los viveros que tengan ese arbol. Mapa
-            //Ruta Indicaciones. Validar.
-            //Validar foto. Requiere nombre, correo, ubicación.
-            //Boton de enviar -> Insert a la base de datos. */}
+            <button onClick={handlePlantar} className="bg-[#ff8300] p-4 mt-12 text-white text-lg font-semibold cursor-pointer" style={{ fontFamily: 'Maven Pro' }}>PLANTAR</button>
+
+            <Modal
+                isOpen={isModalOpen}
+                nombre={planta.nombreComun}
+                id={planta._id}
+                onCancel={() => setIsModalOpen(false)}
+                onConfirm={() => setIsModalOpen(false)}
+            />
         </>
     );
 }

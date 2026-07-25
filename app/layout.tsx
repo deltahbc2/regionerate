@@ -84,7 +84,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-MX">
-      <body className={`${inter.className} ${maven.className} min-h-full flex flex-col`}>
+      <body className={`${inter.className} min-h-full flex flex-col`}>
         <ConvexClientProvider>
           <Menu />
           {children}

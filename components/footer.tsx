@@ -1,14 +1,9 @@
-import Link from "next/link";
-import { Mail, MapPin, Globe } from "lucide-react";
-
 const Footer = () => {
-    const currentYear = new Date().getFullYear();
-
     return (
         <footer id="footer" className="px-6 py-18 border-t border-white/10 bg-[#1C1917] w-full">
             <div className="max-w-300 flex flex-col md:flex-row justify-between gap-8 mx-auto px-2 md:px-12">
                 <div className="flex flex-col">
-                    <span className="text-3xl font-bold text-white tracking-tighter mb-4">Regionerate</span>
+                    <span className="text-3xl font-bold text-white tracking-tighter mb-4" style={{ fontFamily: 'Maven Pro' }}>Regionerate</span>
 
                     <p className="text-gray-400 max-w-sm mb-6">
                         Un proyecto para impulsar la reforestación inteligente en Nuevo León con una experiencia clara, cercana y enfocada en el impacto.

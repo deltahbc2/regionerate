@@ -9,8 +9,8 @@ const Menu = () => {
                     <Link href="/" className="flex items-center gap-3">
                         <img src="/Imagenes/Logo.png" alt="Nuevo Leon" className="h-11 w-11" />
                         
-                        <div className="leading-tight">
-                            <p className="text-lg font-bold tracking-tight text-[#11221c]" style={{ fontFamily: 'Maven Pro' }}>Regionerate</p>
+                        <div className="leading-tight" style={{ fontFamily: 'Maven Pro' }}>
+                            <p className="text-lg font-bold tracking-tight text-[#11221c]">Regionerate</p>
                             <p className="text-xs uppercase tracking-[0.24em] text-neutral-500">Nuevo Leon</p>
                         </div>
                     </Link>
