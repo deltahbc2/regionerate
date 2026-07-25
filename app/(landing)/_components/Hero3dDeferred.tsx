@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 const Objeto3d = dynamic(() => import("./3d"), {
   ssr: false,
   loading: () => (
-    <div className="flex aspect-square w-full items-center justify-center rounded-3xl border border-[#dbe8e1] bg-[#f4f8f5]">
+    <div className="flex h-full w-full items-center justify-center rounded-3xl border border-[#dbe8e1] bg-[#f4f8f5]">
       <div className="h-16 w-16 rounded-full border-4 border-emerald-200 border-t-emerald-600 animate-spin" />
     </div>
   ),
@@ -44,7 +44,15 @@ const Hero3dDeferred = () => {
     return () => observer.disconnect();
   }, []);
 
-  return <div ref={sentinelRef}>{shouldLoad ? <Objeto3d /> : <div className="flex aspect-square w-full items-center justify-center rounded-3xl border border-[#dbe8e1] bg-[#f4f8f5]" />}</div>;
+  return (
+    <div ref={sentinelRef} className="h-full min-h-[24rem] w-full">
+      {shouldLoad ? (
+        <Objeto3d />
+      ) : (
+        <div className="flex h-full w-full items-center justify-center rounded-3xl border border-[#dbe8e1] bg-[#f4f8f5]" />
+      )}
+    </div>
+  );
 };
 
 export default Hero3dDeferred;
