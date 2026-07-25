@@ -12,6 +12,10 @@ const Objeto3d = dynamic(() => import("./3d"), {
   ),
 });
 
+const scheduleIdle = (callback: () => void) => {
+  globalThis.setTimeout(callback, 0);
+};
+
 const Hero3dDeferred = () => {
   const [shouldLoad, setShouldLoad] = useState(false);
   const sentinelRef = useRef<HTMLDivElement>(null);
@@ -21,19 +25,14 @@ const Hero3dDeferred = () => {
     if (!sentinel) return;
 
     if (!("IntersectionObserver" in window)) {
-      const timeout = window.setTimeout(() => setShouldLoad(true), 0);
-      return () => window.clearTimeout(timeout);
+      const timeout = globalThis.setTimeout(() => setShouldLoad(true), 0);
+      return () => globalThis.clearTimeout(timeout);
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          const schedule =
-            window.requestIdleCallback ??
-            ((cb: IdleRequestCallback) =>
-              window.setTimeout(() => cb({ didTimeout: false, timeRemaining: () => 0 }), 700));
-
-          schedule(() => setShouldLoad(true));
+          scheduleIdle(() => setShouldLoad(true));
           observer.disconnect();
         }
       },
