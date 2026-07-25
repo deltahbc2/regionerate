@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Objeto3d from "./3d";
+import Hero3dDeferred from "./Hero3dDeferred";
 import { ArrowRight, Map } from "lucide-react"
 
 const Hero = () => {
@@ -36,7 +36,7 @@ const Hero = () => {
                 </div>
             </div>
             <div className="w-full md:w-1/2 objeto3d px-4 order-0 md:order-1">
-                <Objeto3d/>
+                <Hero3dDeferred/>
             </div>
         </section>
     );

@@ -1,4 +1,4 @@
-import MapClient from "@/components/mapClient";
+import MapDeferred from "./MapDeferred";
 import Link from "next/link";
 import { ArrowRight, Map } from "lucide-react";
 
@@ -8,7 +8,7 @@ const Mapa = () => {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
                 <div className="order-2 lg:order-1 relative">
                     <div className="h-100 border border-outline-variant/10">
-                        <MapClient/>
+                        <MapDeferred/>
                     </div>
                 </div>
 

@@ -18,7 +18,7 @@ const Funcionalidades = () => {
                                 <p className="text-neutral-800 max-w-md">Visualiza y explora los árboles nativos de cada municipio según su ecorregion.</p>
                             </div>
                             <div className="mt-8 relative h-48 md:h-64 rounded-2xl overflow-hidden border border-neutral-200 shadow-inner">
-                                <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/Imagenes/Mapa.png" alt="Regionerate Mapa Interactivo" />
+                                <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/Imagenes/Mapa.webp" alt="Regionerate Mapa Interactivo" />
                             </div>
                         </div>
 

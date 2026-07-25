@@ -7,7 +7,7 @@ const Menu = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex h-20 items-center justify-between gap-4">
                     <Link href="/" className="flex items-center gap-3">
-                        <img src="/Imagenes/Logo.png" alt="Nuevo Leon" className="h-11 w-11" />
+                        <img src="/Imagenes/Logo.webp" alt="Nuevo Leon" className="h-11 w-11" />
                         
                         <div className="leading-tight" style={{ fontFamily: 'Maven Pro' }}>
                             <p className="text-lg font-bold tracking-tight text-[#11221c]">Regionerate</p>

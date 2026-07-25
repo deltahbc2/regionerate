@@ -56,7 +56,7 @@ export const metadata: Metadata = {
       "Explora el mapa de arboles plantados en Nuevo Leon y descubre informacion util para reforestacion inteligente.",
     images: [
       {
-        url: "/Imagenes/Logo.png",
+        url: "/Imagenes/Logo.webp",
         width: 512,
         height: 512,
         alt: "Regionerate",
@@ -68,12 +68,12 @@ export const metadata: Metadata = {
     title: "Regionerate",
     description:
       "Explora el mapa de arboles plantados en Nuevo Leon y consulta informacion para reforestacion inteligente.",
-    images: ["/Imagenes/Logo.png"],
+    images: ["/Imagenes/Logo.webp"],
   },
   icons: {
-    icon: "/Imagenes/Logo.png",
-    shortcut: "/Imagenes/Logo.png",
-    apple: "/Imagenes/Logo.png",
+    icon: "/Imagenes/Logo.webp",
+    shortcut: "/Imagenes/Logo.webp",
+    apple: "/Imagenes/Logo.webp",
   },
 };
 
