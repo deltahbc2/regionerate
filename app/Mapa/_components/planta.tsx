@@ -141,7 +141,7 @@ const Planta = ({
                     <h3 className="text-xl font-medium text-center text-black">Sindrome de Polinización:</h3>
                     <div className="flex flex-row mt-2 gap-1">
                         {planta.polinizadores?.map((item, index) => (
-                            <img key={index} src={`/polinizadores/${item}.svg`} alt={item} className="size-8"/>
+                            <img key={index} src={`/polinizadores/${item.toLowerCase()}.svg`} alt={item.toLowerCase()} className="size-8"/>
                         ))}
                     </div>
                 </div>
