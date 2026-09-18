@@ -38,14 +38,20 @@ export const getPlantaByNombreCientifico = query({
 export const createArbolPlantado = mutation({
     args: {
         idPlanta: v.id("plantas"),
-        nombre: v.string(),
+        nombre: v.optional(v.string()),
         long: v.string(),
-        lat: v.string()
+        lat: v.string(),
+        fechaPlantacion: v.optional(v.string())
     }, handler: async (ctx, args) =>{
+        const nombreLimpio = args.nombre?.trim();
+        let fechaPlantacion = args.fechaPlantacion?.trim();
+        if (!fechaPlantacion || Number.isNaN(new Date(fechaPlantacion).getTime())) {
+            fechaPlantacion = new Date().toISOString();
+        }
         const arbol = await ctx.db.insert("arbolesPlantados", {
             idPlanta: args.idPlanta,
-            fechaPlantacion: new Date().toISOString(),
-            usuario: args.nombre,
+            fechaPlantacion,
+            ...(nombreLimpio ? { usuario: nombreLimpio } : {}),
             latitud: parseFloat(args.lat),
             longitud: parseFloat(args.long)
         });

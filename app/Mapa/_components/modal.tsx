@@ -2,6 +2,7 @@
 
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
+import { RANGOS_SIEMBRA, RangoSiembra, getFechaPorRango } from "@/lib/arboles";
 import { useMutation } from "convex/react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -32,6 +33,7 @@ const Modal = ({
     const [calle, setCalle] = useState<string>("");
     const [colonia, setColonia] = useState<string>("");
     const [municipio, setMunicipio] = useState<string>("");
+    const [rangoSiembra, setRangoSiembra] = useState<RangoSiembra>("reciente");
 
 
     const getLocation = () => {
@@ -49,7 +51,7 @@ const Modal = ({
                     long: position.coords.longitude.toString(),
                 });
             },
-            (err) => {
+            () => {
                 setError("Ubicacion no permitida. Por favor, habilita la ubicacion en tu navegador.");
             }
         );
@@ -57,13 +59,14 @@ const Modal = ({
 
     const handleConfirmar = async () => {
         setLoading(true);
+        setError(null);
 
         try {
             let nextCoords = coords;
 
             if (manual) {
-                if (!name || !calle || !colonia || !municipio) {
-                    setError("Por favor, completa todos los campos.");
+                if (!calle || !colonia || !municipio) {
+                    setError("Por favor, completa la dirección.");
                     return;
                 }
 
@@ -86,8 +89,8 @@ const Modal = ({
                 };
                 setCoords(nextCoords);
             } else {
-                if (!name || !coords) {
-                    setError("Por favor, completa todos los campos.");
+                if (!coords) {
+                    setError("Por favor, obtén tu ubicación o escribe la dirección manualmente.");
                     return;
                 }
             }
@@ -97,11 +100,14 @@ const Modal = ({
                 return;
             }
 
+            const nombreLimpio = name.trim();
+
             const promise = plantar({
                 idPlanta: id,
-                nombre: name,
+                ...(nombreLimpio ? { nombre: nombreLimpio } : {}),
                 long: nextCoords.long,
                 lat: nextCoords.lat,
+                fechaPlantacion: getFechaPorRango(rangoSiembra),
             });
 
             toast.promise(promise, {
@@ -120,6 +126,9 @@ const Modal = ({
         return null;
     }
 
+    const direccionIncompleta = manual && (!calle || !colonia || !municipio);
+    const sinUbicacion = !manual && !coords;
+
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4">
             <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl">
@@ -127,11 +136,26 @@ const Modal = ({
 
                 <input 
                     type="text"
-                    placeholder="Escribe tu nombre"
+                    placeholder="Escribe tu nombre (opcional)"
                     className="w-full mt-4 p-2 border border-neutral-500 focus:border-neutral-700 outline-none rounded-lg"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
+
+                <label className="mt-4 block text-sm font-medium text-neutral-700">
+                    ¿Cuándo se plantó?
+                    <select
+                        value={rangoSiembra}
+                        onChange={(e) => setRangoSiembra(e.target.value as RangoSiembra)}
+                        className="mt-1 w-full p-2 border border-neutral-500 focus:border-neutral-700 outline-none rounded-lg bg-white"
+                    >
+                        {RANGOS_SIEMBRA.map((rango) => (
+                            <option key={rango.valor} value={rango.valor}>
+                                {rango.icono} {rango.etiqueta}
+                            </option>
+                        ))}
+                    </select>
+                </label>
 
                 {manual && (
                     <div className="grid grid-cols-2 gap-2 mt-4">
@@ -188,7 +212,7 @@ const Modal = ({
                         type="button"
                         onClick={handleConfirmar}
                         className="rounded-lg bg-emerald-600 px-4 py-2 font-medium text-white transition hover:bg-emerald-700 cursor-pointer disabled:bg-neutral-400 disabled:cursor-not-allowed"
-                        disabled={!name || (manual && (!calle || !colonia || !municipio))}
+                        disabled={direccionIncompleta || sinUbicacion}
                     >
                         {loading ? "Cargando..." : "Confirmar"}
                     </button>

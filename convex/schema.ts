@@ -23,7 +23,7 @@ export default defineSchema({
         latitud: v.number(),
         longitud: v.number(),
         fechaPlantacion: v.string(),
-        usuario: v.string()
+        usuario: v.optional(v.string())
     })
     .index("by_idPlanta", ["idPlanta"])
 });
